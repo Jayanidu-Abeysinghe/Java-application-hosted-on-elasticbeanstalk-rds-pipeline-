@@ -62,6 +62,9 @@ This project showcases a **fully automated CI/CD pipeline** for deploying the `V
 - **Security**: Private (Not Publicly Accessible)
 - **VPC**: `vpc-0c15a5f6da8e4e21`
 
+![RDS Configuration Screenshot](Database/Screenshot%202025-04-17%20051400.png)
+
+
 ### 🧱 Schema Tables
 
 - `user`: Stores user profiles and credentials
