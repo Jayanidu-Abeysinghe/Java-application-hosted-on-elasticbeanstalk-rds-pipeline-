@@ -97,36 +97,7 @@ Deploy (Elastic Beanstalk)
 ![Schema Tables Screenshot](Database/Screenshot%202025-04-17%20051508.png)
 
 
-## 🏗️ Build Process (buildspec.yml)
 
-version: 0.2
-
-phases:
-  install:
-    runtime-versions:
-      java: corretto17
-
-  pre_build:
-    commands:
-      - apt-get update
-      - apt-get install -y jq
-      - wget https://archive.apache.org/dist/maven/maven-3/3.9.8/binaries/apache-maven-3.9.8-bin.tar.gz
-      - tar xzf apache-maven-3.9.8-bin.tar.gz
-      - ln -s apache-maven-3.9.8 maven
-      - sed -i 's/.../.../' src/main/resources/application.properties
-
-  build:
-    commands:
-      - mvn install
-
-  post_build:
-    commands:
-      - mvn package
-
-artifacts:
-  files:
-    - '**/*'
-  base-directory: 'target/vprofile-v2'
 
 ---
 
@@ -171,6 +142,40 @@ mysql -h [endpoint] -u admin -p < db_backup.sql
 
 
 ---
+
+## 🏗️ Build Process (buildspec.yml)
+
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+
+  pre_build:
+    commands:
+      - apt-get update
+      - apt-get install -y jq
+      - wget https://archive.apache.org/dist/maven/maven-3/3.9.8/binaries/apache-maven-3.9.8-bin.tar.gz
+      - tar xzf apache-maven-3.9.8-bin.tar.gz
+      - ln -s apache-maven-3.9.8 maven
+      - sed -i 's/.../.../' src/main/resources/application.properties
+
+  build:
+    commands:
+      - mvn install
+
+  post_build:
+    commands:
+      - mvn package
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'target/vprofile-v2'
+
+----
+
 
 🔒 Security Practices
 ❌ RDS not publicly accessible
