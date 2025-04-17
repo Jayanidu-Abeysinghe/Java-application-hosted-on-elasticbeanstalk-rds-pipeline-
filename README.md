@@ -33,10 +33,8 @@ This project showcases a **fully automated CI/CD pipeline** for deploying the `V
 
 ## **🧭 Architecture Diagram**
 
-> _You can insert a diagram image here (e.g., `architecture.png`) using:_
-
-```markdown
 ![Architecture Diagram](architecture.png)
+
 
 
 ---
