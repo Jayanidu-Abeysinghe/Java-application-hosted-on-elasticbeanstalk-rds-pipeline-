@@ -199,7 +199,7 @@ Deploy (Elastic Beanstalk)
 
 ---
 
-## **🛠️ Troubleshooting**
+## 🛠️ Troubleshooting
 
 | Issue             | Fix                                |
 |------------------|-------------------------------------|
@@ -208,14 +208,11 @@ Deploy (Elastic Beanstalk)
 | ⛔ Deploy fails   | Check EB logs & health              |
 | 💤 Pipeline stalls | Check for manual approvals          |
 
----
-
-🚀 Future Enhancements
 
 
 ---
 
-## **🚀 Future Enhancements**
+## 🚀 Future Enhancements
 ✅ Add automated testing stage
 
 🔁 Implement blue-green deployments
