@@ -79,7 +79,7 @@ CREATE TABLE user_role (...);
 
 ---
 
-Restore with:
+## **Restore with:**
 
 bash
 
@@ -87,7 +87,7 @@ mysql -h [endpoint] -u admin -p < db_backup.sql
 
 ---
 
-🏗️ Build Process (buildspec.yml)
+## **🏗️ Build Process (buildspec.yml)**
 
 
 version: 0.2
@@ -119,9 +119,9 @@ artifacts:
     - '**/*'
   base-directory: 'target/vprofile-v2'
 
-  ---
+---
 
-🔁 Deployment Pipeline
+## **🔁 Deployment Pipeline**
 
 Pipeline Stages
 Source: Bitbucket repo triggers pipeline
@@ -132,7 +132,7 @@ Deploy: Artifacts deployed to Elastic Beanstalk
 
 ---
 
-🧑‍💻 Accessing the Application
+## **🧑‍💻 Accessing the Application**
 🔐 Default Login
 Username: admin_vp
 
@@ -143,7 +143,7 @@ The app is pre-loaded with users of various roles for demo purposes.
 
 ---
 
-🔒 Security Practices
+## **🔒 Security Practices**
 ❌ RDS not publicly accessible
 
 🔐 Secrets stored in SSM Parameter Store
@@ -158,7 +158,7 @@ The app is pre-loaded with users of various roles for demo purposes.
 
 ---
 
-📊 Monitoring & Debugging
+## **📊 Monitoring & Debugging**
 🔍 CloudWatch logs and metrics
 
 🟢 Elastic Beanstalk health dashboard
@@ -169,7 +169,7 @@ The app is pre-loaded with users of various roles for demo purposes.
 
 ---
 
-🚀 Getting Started (Deploy Your Own)
+## **🚀 Getting Started (Deploy Your Own)**
 ✅ Prerequisites
 AWS Account
 
@@ -200,7 +200,7 @@ Deploy (Elastic Beanstalk)
 
 ---
 
-🛠️ Troubleshooting
+## **🛠️ Troubleshooting**
 Issue	Fix
 ❌ Build fails	Check CodeBuild logs
 🔌 DB errors	Check RDS connectivity
@@ -209,7 +209,7 @@ Issue	Fix
 
 ---
 
-🚀 Future Enhancements
+## **🚀 Future Enhancements**
 ✅ Add automated testing stage
 
 🔁 Implement blue-green deployments
