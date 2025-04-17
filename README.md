@@ -1,228 +1,200 @@
-# Java-application-hosted-on-elasticbeanstalk-rds-pipeline-
-🚀 VProfile AWS CI/CD Pipeline | ⚡ Full automation from Bitbucket to Elastic Beanstalk | 🗄️ MySQL RDS backend | ☁️ S3 artifact storage  🔧 Tech Stack: 🛠️ CodeBuild &amp; CodePipeline  ☕ Java 17 (Corretto)  📦 Maven builds  🔒 Secure config management  📊 CloudWatch monitoring  💡 Demonstrates DevOps best practices for cloud-native deployments on AWS
+# 🚀 Java Application CI/CD on AWS with Elastic Beanstalk & RDS
 
+A **DevOps pipeline project** demonstrating complete CI/CD automation for a Java-based web application using **Bitbucket, AWS CodePipeline, CodeBuild, Elastic Beanstalk, S3**, and **Amazon RDS MySQL**.
 
-DevOps Project: VProfile CI/CD Pipeline on AWS
-Project Overview
-This project implements a complete CI/CD pipeline for the VProfile application on AWS infrastructure, featuring:
+---
 
-AWS Elastic Beanstalk for application hosting
+## 🔧 Tech Stack
 
-Amazon RDS MySQL for database services
+- ☕ **Java 17 (Corretto)**
+- 📦 **Maven**
+- 🧪 **AWS CodeBuild**
+- 🔁 **AWS CodePipeline**
+- ☁️ **Elastic Beanstalk**
+- 🗄️ **Amazon RDS (MySQL)**
+- 🗃️ **S3 (Artifact Storage)**
+- 🔒 **SSM Parameter Store for secrets**
+- 📊 **CloudWatch (Monitoring)**
 
-AWS CodePipeline for CI/CD orchestration
+---
 
-Bitbucket as source code repository
+## 📚 Project Overview
 
-AWS CodeBuild for build automation
+This project showcases a **fully automated CI/CD pipeline** for deploying the `VProfile` Java web application on AWS, using:
 
-Architecture Diagram
-System Architecture
+- 🧾 **Bitbucket** as the version control system
+- 🧱 **CodeBuild** for building & packaging
+- 📦 **S3** for storing artifacts
+- 🚢 **Elastic Beanstalk** for deploying the application
+- 🗄️ **Amazon RDS** for MySQL backend
+- 🔁 **CodePipeline** to orchestrate everything
 
-Key Components:
-Bitbucket Repository: Source code management
+---
 
-AWS CodePipeline: CI/CD workflow orchestration
+## 🧭 Architecture Diagram
 
-AWS CodeBuild: Automated build and package
+> You can add a screenshot here like:
 
-Elastic Beanstalk: Application deployment environment
-
-Amazon RDS: MySQL database service
-
-Database Configuration
-RDS Instance Details
-RDS Configuration
-
-Endpoint: vprords.c1ikcm2m84ek.us-east-1.rds.amazonaws.com:3306
-
-Engine: MySQL Community 8.0.35
-
-Availability Zone: us-east-1d
-
-Security: Not publicly accessible
-
-VPC: vpc-0c15a5f6da8e4e21
-
-Database Schema
-The application uses a MySQL database with three main tables:
-
-user: Stores user profiles and credentials
-
-role: Defines user roles (currently only ROLE_USER)
-
-user_role: Junction table for user-role relationships
-
-Database Initialization
-The database is initialized using a SQL dump file (db_backup.sql) containing:
-
-sql
+markdown
 Copy
--- Sample initialization commands
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  -- ... additional fields ...
-  PRIMARY KEY (`id`)
-);
+Edit
 
-CREATE TABLE `role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-);
+---
 
-CREATE TABLE `user_role` (
-  `user_id` int(11) NOT NULL,
-  `role_id` int(11) NOT NULL,
-  PRIMARY KEY (`user_id`,`role_id`)
-);
-Database Restoration
-Database Restoration
+## 🗂️ Key Components
 
-The database is restored using:
+| Component           | Description                              |
+|--------------------|------------------------------------------|
+| **Bitbucket**       | Source Code Management                   |
+| **CodeBuild**       | Builds Java application using Maven      |
+| **CodePipeline**    | Automates the CI/CD flow                 |
+| **Elastic Beanstalk** | Java Application Hosting              |
+| **Amazon RDS**      | MySQL Database                           |
+| **S3**              | Stores compiled build artifacts          |
+
+---
+
+## 🗃️ Database Configuration
+
+### 🔧 RDS Instance Details
+
+- **Endpoint**: `vprords.c1ikcm2m84ek.us-east-1.rds.amazonaws.com:3306`
+- **Engine**: MySQL Community 8.0.35
+- **Availability Zone**: `us-east-1d`
+- **Security**: Private (Not Publicly Accessible)
+- **VPC**: `vpc-0c15a5f6da8e4e21`
+
+### 🧱 Schema Tables
+
+- `user`: Stores user profiles and credentials
+- `role`: Defines user roles (`ROLE_USER`, etc.)
+- `user_role`: Junction table for user-role mapping
+
+### 🧨 Initialization SQL
+
+```sql
+CREATE TABLE user (...);
+CREATE TABLE role (...);
+CREATE TABLE user_role (...);
+Restore with:
 
 bash
 Copy
-mysql -h vprords.c1ikcm2m84ek.us-east-1.rds.amazonaws.com \
-      -u admin -pQrYp94rptWwz3ltf1CPo accounts < db_backup.sql
-Build Process
-Build Specification (buildspec.yml)
+Edit
+mysql -h [endpoint] -u admin -p < db_backup.sql
+🏗️ Build Process (buildspec.yml)
 yaml
 Copy
+Edit
 version: 0.2
 
 phases:
   install:
     runtime-versions:
       java: corretto17
+
   pre_build:
     commands:
       - apt-get update
-      - apt-get install -y jq 
+      - apt-get install -y jq
       - wget https://archive.apache.org/dist/maven/maven-3/3.9.8/binaries/apache-maven-3.9.8-bin.tar.gz
       - tar xzf apache-maven-3.9.8-bin.tar.gz
       - ln -s apache-maven-3.9.8 maven
-      - sed -i 's/jdbc.password=admin123/jdbc.password=QrYp94rptWwz31tflCPo' src/main/resources/application.properties
-      - sed -i 's/jdbc.username=admin/jdbc.username=admin/' src/main/resources/application.properties
-      - sed -i 's/db01:3306/vprords.c1ikcm2m84ek.us-east-1.rds.amazonaws.com:3306/' src/main/resources/application.properties
+      - sed -i 's/.../.../' src/main/resources/application.properties
+
   build:
     commands:
       - mvn install
+
   post_build:
     commands:
-       - mvn package
+      - mvn package
+
 artifacts:
   files:
-     - '**/*'
+    - '**/*'
   base-directory: 'target/vprofile-v2'
-Key build steps:
+🔁 Deployment Pipeline
+Pipeline Stages
+Source: Bitbucket repo triggers pipeline
 
-Installs Java Corretto 17 and Maven 3.9.8
+Build: Runs buildspec.yml via CodeBuild
 
-Updates database connection properties in application.properties
+Deploy: Artifacts deployed to Elastic Beanstalk
 
-Executes Maven build and package
-
-Deployment Pipeline
-CodePipeline
-
-Pipeline Stages:
-Source: Connects to Bitbucket repository
-
-Build: Executes CodeBuild with the specified buildspec
-
-Deploy: Deploys to Elastic Beanstalk environment
-
-Application Access
-Login Screen
-
-Default Credentials:
+🧑‍💻 Accessing the Application
+🔐 Default Login
 Username: admin_vp
 
-Password: Secured (hashed in database)
+Password: (stored hashed in DB)
 
-Sample Users:
-The database includes several pre-configured users with different profiles and roles.
+✅ Sample Users
+The app is pre-loaded with users of various roles for demo purposes.
 
-Security Considerations
-Database Security:
+🔒 Security Practices
+❌ RDS not publicly accessible
 
-RDS instance is not publicly accessible
+🔐 Secrets stored in SSM Parameter Store
 
-Credentials stored securely in AWS Systems Manager Parameter Store
+🔐 Passwords hashed with BCrypt
 
-Passwords are hashed using BCrypt
+🔐 IAM roles follow least privilege
 
-Application Security:
+🔐 S3 artifacts encrypted
 
-Role-based access control
+🔐 VPC + SGs used for traffic control
 
-Secure password storage
+📊 Monitoring & Debugging
+🔍 CloudWatch logs and metrics
 
-Infrastructure Security:
+🟢 Elastic Beanstalk health dashboard
 
-Least privilege IAM roles
+🔁 Pipeline execution history
 
-Encrypted S3 artifacts
+🛠️ RDS performance metrics
 
-VPC security groups restricting access
+🚀 Getting Started (Deploy Your Own)
+✅ Prerequisites
+AWS Account
 
-Monitoring and Maintenance
-AWS CloudWatch for application metrics and logs
+Bitbucket Repository
 
-Elastic Beanstalk environment health monitoring
+MySQL Client
 
-RDS performance monitoring
-
-Pipeline execution history for debugging
-
-Getting Started
-Prerequisites:
-AWS account with appropriate permissions
-
-Bitbucket repository with application code
-
-MySQL client for database administration
-
-Setup Steps:
+🔧 Setup Guide
 Create RDS MySQL instance
 
-Initialize database using provided SQL script
+Restore DB using db_backup.sql
 
-Set up CodeBuild project with buildspec.yml
+Upload source to Bitbucket
 
-Configure CodePipeline to connect to source repository
+Create S3 bucket for artifacts
 
-Deploy to Elastic Beanstalk
+Setup CodeBuild with buildspec.yml
 
-Troubleshooting Guide
-Issue	Solution
-Build failures	Check CodeBuild logs for specific errors
-Database connection issues	Verify RDS security groups and credentials
-Deployment failures	Check Elastic Beanstalk environment health
-Pipeline stalls	Look for approval actions or resource limits
-Future Enhancements
-Implement blue-green deployments
+Setup Elastic Beanstalk Environment
 
-Add automated testing stages
+Create CodePipeline:
 
-Integrate security scanning tools
+Source (Bitbucket)
 
-Set up comprehensive monitoring and alerts
+Build (CodeBuild)
 
-Implement infrastructure as code using AWS CDK
+Deploy (Elastic Beanstalk)
 
-Project Management
-HKH Infotech
+🛠️ Troubleshooting
+Issue	Fix
+❌ Build fails	Check CodeBuild logs
+🔌 DB errors	Check RDS connectivity
+⛔ Deploy fails	Check EB logs & health
+💤 Pipeline stalls	Check for manual approvals
+🚀 Future Enhancements
+✅ Add automated testing stage
 
-This project was developed as part of HKH Infotech's DevOps training program, demonstrating:
+🔁 Implement blue-green deployments
 
-Continuous Integration best practices
+🛡️ Integrate security scanning tools
 
-Infrastructure as Code principles
+⚙️ Use AWS CDK for full IAC
 
-Automated deployment strategies
-
-Cloud-native application development
+📢 Add Slack notifications
