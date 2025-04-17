@@ -97,24 +97,7 @@ Deploy (Elastic Beanstalk)
 ![Schema Tables Screenshot](Database/Screenshot%202025-04-17%20051508.png)
 
 
-### 🧨 Initialization SQL
-
-```sql
-CREATE TABLE user (...);
-CREATE TABLE role (...);
-CREATE TABLE user_role (...);
-
----
-
-## **Restore with:**
-
-bash
-
-mysql -h [endpoint] -u admin -p < db_backup.sql
-
----
-
-🏗️ Build Process (buildspec.yml)
+## 🏗️ Build Process (buildspec.yml)
 
 version: 0.2
 
@@ -156,7 +139,24 @@ artifacts:
 
 ![CodeBuild Screenshot](CodeBuild.png)
 
+### 🧨 Initialization SQL
+
+```sql
+CREATE TABLE user (...);
+CREATE TABLE role (...);
+CREATE TABLE user_role (...);
+
 ---
+
+## Restore with:**
+
+bash
+
+mysql -h [endpoint] -u admin -p < db_backup.sql
+
+---
+
+
 
 ## 🧑‍💻 Accessing the Application
 
@@ -232,3 +232,4 @@ MySQL Client
 ⚙️ Use AWS CDK for full IAC
 
 📢 Add Slack notifications
+
