@@ -139,6 +139,20 @@ artifacts:
 
 ![CodeBuild Screenshot](CodeBuild.png)
 
+
+
+## 🧑‍💻 Accessing the Application
+
+### 🔐 Default Login
+- **Username**: `admin_vp`
+- **Password**: _(stored hashed in DB)_
+
+
+![Deployment Screenshot 1](Deploy1.png)
+![Deployment Screenshot 2](Deploy2.png)
+
+
+
 ### 🧨 Initialization SQL
 
 ```sql
@@ -154,19 +168,6 @@ bash
 
 mysql -h [endpoint] -u admin -p < db_backup.sql
 
----
-
-
-
-## 🧑‍💻 Accessing the Application
-
-### 🔐 Default Login
-- **Username**: `admin_vp`
-- **Password**: _(stored hashed in DB)_
-
-
-![Deployment Screenshot 1](Deploy1.png)
-![Deployment Screenshot 2](Deploy2.png)
 
 
 ---
