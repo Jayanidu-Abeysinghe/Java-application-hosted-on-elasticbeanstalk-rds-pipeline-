@@ -4,7 +4,7 @@ A **DevOps pipeline project** demonstrating complete CI/CD automation for a Java
 
 ---
 
-## 🔧 Tech Stack
+## **🔧 Tech Stack**
 
 - ☕ **Java 17 (Corretto)**
 - 📦 **Maven**
@@ -18,26 +18,26 @@ A **DevOps pipeline project** demonstrating complete CI/CD automation for a Java
 
 ---
 
-## 📚 Project Overview
+## **📚 Project Overview**
 
 This project showcases a **fully automated CI/CD pipeline** for deploying the `VProfile` Java web application on AWS, using:
 
-- 🧾 **Bitbucket** as the version control system
-- 🧱 **CodeBuild** for building & packaging
-- 📦 **S3** for storing artifacts
-- 🚢 **Elastic Beanstalk** for deploying the application
-- 🗄️ **Amazon RDS** for MySQL backend
+- 🧾 **Bitbucket** as the version control system  
+- 🧱 **CodeBuild** for building & packaging  
+- 📦 **S3** for storing artifacts  
+- 🚢 **Elastic Beanstalk** for deploying the application  
+- 🗄️ **Amazon RDS** for MySQL backend  
 - 🔁 **CodePipeline** to orchestrate everything
 
 ---
 
-## 🧭 Architecture Diagram
+## **🧭 Architecture Diagram**
 
-> You can add a screenshot here like:
+> _You can insert a diagram image here (e.g., `architecture.png`) using:_
 
-markdown
-Copy
-Edit
+```markdown
+![Architecture Diagram](architecture.png)
+
 
 ---
 
@@ -87,8 +87,7 @@ mysql -h [endpoint] -u admin -p < db_backup.sql
 
 ---
 
-## **🏗️ Build Process (buildspec.yml)**
-
+🏗️ Build Process (buildspec.yml)
 
 version: 0.2
 
@@ -121,7 +120,7 @@ artifacts:
 
 ---
 
-## **🔁 Deployment Pipeline**
+🔁 Deployment Pipeline
 
 Pipeline Stages
 Source: Bitbucket repo triggers pipeline
@@ -132,7 +131,7 @@ Deploy: Artifacts deployed to Elastic Beanstalk
 
 ---
 
-## **🧑‍💻 Accessing the Application**
+🧑‍💻 Accessing the Application
 🔐 Default Login
 Username: admin_vp
 
@@ -143,7 +142,7 @@ The app is pre-loaded with users of various roles for demo purposes.
 
 ---
 
-## **🔒 Security Practices**
+🔒 Security Practices
 ❌ RDS not publicly accessible
 
 🔐 Secrets stored in SSM Parameter Store
@@ -158,7 +157,7 @@ The app is pre-loaded with users of various roles for demo purposes.
 
 ---
 
-## **📊 Monitoring & Debugging**
+📊 Monitoring & Debugging
 🔍 CloudWatch logs and metrics
 
 🟢 Elastic Beanstalk health dashboard
@@ -169,7 +168,7 @@ The app is pre-loaded with users of various roles for demo purposes.
 
 ---
 
-## **🚀 Getting Started (Deploy Your Own)**
+🚀 Getting Started (Deploy Your Own)
 ✅ Prerequisites
 AWS Account
 
@@ -201,11 +200,18 @@ Deploy (Elastic Beanstalk)
 ---
 
 ## **🛠️ Troubleshooting**
-Issue	Fix
-❌ Build fails	Check CodeBuild logs
-🔌 DB errors	Check RDS connectivity
-⛔ Deploy fails	Check EB logs & health
-💤 Pipeline stalls	Check for manual approvals
+
+| Issue             | Fix                                |
+|------------------|-------------------------------------|
+| ❌ Build fails    | Check CodeBuild logs                |
+| 🔌 DB errors      | Check RDS connectivity              |
+| ⛔ Deploy fails   | Check EB logs & health              |
+| 💤 Pipeline stalls | Check for manual approvals          |
+
+---
+
+🚀 Future Enhancements
+
 
 ---
 
