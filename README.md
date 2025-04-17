@@ -1,0 +1,2 @@
+# Java-application-hosted-on-elasticbeanstalk-rds-pipeline-
+🚀 VProfile AWS CI/CD Pipeline | ⚡ Full automation from Bitbucket to Elastic Beanstalk | 🗄️ MySQL RDS backend | ☁️ S3 artifact storage  🔧 Tech Stack: 🛠️ CodeBuild &amp; CodePipeline  ☕ Java 17 (Corretto)  📦 Maven builds  🔒 Secure config management  📊 CloudWatch monitoring  💡 Demonstrates DevOps best practices for cloud-native deployments on AWS
