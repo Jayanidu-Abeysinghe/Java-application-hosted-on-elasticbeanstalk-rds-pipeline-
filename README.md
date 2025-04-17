@@ -76,16 +76,20 @@ Edit
 CREATE TABLE user (...);
 CREATE TABLE role (...);
 CREATE TABLE user_role (...);
+
+---
+
 Restore with:
 
 bash
-Copy
-Edit
+
 mysql -h [endpoint] -u admin -p < db_backup.sql
+
+---
+
 🏗️ Build Process (buildspec.yml)
-yaml
-Copy
-Edit
+
+
 version: 0.2
 
 phases:
@@ -114,13 +118,19 @@ artifacts:
   files:
     - '**/*'
   base-directory: 'target/vprofile-v2'
+
+  ---
+
 🔁 Deployment Pipeline
+
 Pipeline Stages
 Source: Bitbucket repo triggers pipeline
 
 Build: Runs buildspec.yml via CodeBuild
 
 Deploy: Artifacts deployed to Elastic Beanstalk
+
+---
 
 🧑‍💻 Accessing the Application
 🔐 Default Login
@@ -130,6 +140,8 @@ Password: (stored hashed in DB)
 
 ✅ Sample Users
 The app is pre-loaded with users of various roles for demo purposes.
+
+---
 
 🔒 Security Practices
 ❌ RDS not publicly accessible
@@ -144,6 +156,8 @@ The app is pre-loaded with users of various roles for demo purposes.
 
 🔐 VPC + SGs used for traffic control
 
+---
+
 📊 Monitoring & Debugging
 🔍 CloudWatch logs and metrics
 
@@ -152,6 +166,8 @@ The app is pre-loaded with users of various roles for demo purposes.
 🔁 Pipeline execution history
 
 🛠️ RDS performance metrics
+
+---
 
 🚀 Getting Started (Deploy Your Own)
 ✅ Prerequisites
@@ -182,12 +198,17 @@ Build (CodeBuild)
 
 Deploy (Elastic Beanstalk)
 
+---
+
 🛠️ Troubleshooting
 Issue	Fix
 ❌ Build fails	Check CodeBuild logs
 🔌 DB errors	Check RDS connectivity
 ⛔ Deploy fails	Check EB logs & health
 💤 Pipeline stalls	Check for manual approvals
+
+---
+
 🚀 Future Enhancements
 ✅ Add automated testing stage
 
