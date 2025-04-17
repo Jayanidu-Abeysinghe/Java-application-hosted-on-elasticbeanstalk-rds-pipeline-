@@ -31,6 +31,29 @@ This project showcases a **fully automated CI/CD pipeline** for deploying the `V
 
 ---
 
+## **🔧 Setup Guide**
+Create RDS MySQL instance
+
+Restore DB using db_backup.sql
+
+Upload source to Bitbucket
+
+Create S3 bucket for artifacts
+
+Setup CodeBuild with buildspec.yml
+
+Setup Elastic Beanstalk Environment
+
+Create CodePipeline:
+
+Source (Bitbucket)
+
+Build (CodeBuild)
+
+Deploy (Elastic Beanstalk)
+
+---
+
 ## **🧭 Architecture Diagram**
 
 ![Architecture Diagram](architecture.png)
@@ -70,6 +93,9 @@ This project showcases a **fully automated CI/CD pipeline** for deploying the `V
 - `user`: Stores user profiles and credentials
 - `role`: Defines user roles (`ROLE_USER`, etc.)
 - `user_role`: Junction table for user-role mapping
+
+![Schema Tables Screenshot](Database/Screenshot%202025-04-17%20051508.png)
+
 
 ### 🧨 Initialization SQL
 
@@ -121,25 +147,27 @@ artifacts:
 
 ---
 
-🔁 Deployment Pipeline
+## 🔁 Deployment Pipeline
 
-Pipeline Stages
-Source: Bitbucket repo triggers pipeline
+### Pipeline Stages:
+- **Source**: Bitbucket repo triggers pipeline
+- **Build**: Runs buildspec.yml via CodeBuild
+- **Deploy**: Artifacts deployed to Elastic Beanstalk
 
-Build: Runs buildspec.yml via CodeBuild
-
-Deploy: Artifacts deployed to Elastic Beanstalk
+![CodeBuild Screenshot](CodeBuild.png)
 
 ---
 
-🧑‍💻 Accessing the Application
-🔐 Default Login
-Username: admin_vp
+## 🧑‍💻 Accessing the Application
 
-Password: (stored hashed in DB)
+### 🔐 Default Login
+- **Username**: `admin_vp`
+- **Password**: _(stored hashed in DB)_
 
-✅ Sample Users
-The app is pre-loaded with users of various roles for demo purposes.
+
+![Deployment Screenshot 1](Deploy1.png)
+![Deployment Screenshot 2](Deploy2.png)
+
 
 ---
 
@@ -177,26 +205,7 @@ Bitbucket Repository
 
 MySQL Client
 
-🔧 Setup Guide
-Create RDS MySQL instance
 
-Restore DB using db_backup.sql
-
-Upload source to Bitbucket
-
-Create S3 bucket for artifacts
-
-Setup CodeBuild with buildspec.yml
-
-Setup Elastic Beanstalk Environment
-
-Create CodePipeline:
-
-Source (Bitbucket)
-
-Build (CodeBuild)
-
-Deploy (Elastic Beanstalk)
 
 ---
 
